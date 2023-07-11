@@ -1,0 +1,3 @@
+gcc -c o2.s -o tmp.o
+ar rcs libtmp.a tmp.o
+gcc fibonacci_driver.c -o fibonacci_driver.elf -L. -ltmp && time ./fibonacci_driver.elf bench
