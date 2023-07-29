@@ -1,0 +1,40 @@
+## build
+
+../configure --prefix="/home/topcue/llm-opti/tools/gcc/install"
+make -j 8 && make install
+
+## search
+
+cat gcc/common.opt | grep -A2 "fcaller-saves"
+grep -r --exclude-dir="build" --exclude-dir="gcc/testsuite" "flag_caller_saves"
+
+## quicksort's explicit flags
+
+## o1
+
+-fomit-frame-pointer
+-ftree-coalesce-vars
+-ftree-ter
+
+
+## o2
+
+-falign-functions
+-falign-jumps
+-fschedule-insns
+-fschedule-insns2
+-fcaller-saves
+-fgcse
+-finline-small-functions
+-fipa-ra
+-foptimize-sibling-calls
+-ftree-pre
+-freorder-blocks-algorithm=stc
+-fexpensive-optimizations
+
+## o3
+
+-finline-functions
+
+# EOF
+

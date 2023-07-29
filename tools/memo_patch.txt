@@ -1,0 +1,7 @@
+## generate path file
+cd llm-opti/tools/gcc
+git diff > llm-opti/tools/patches/my_changes.patch
+
+## apply patch
+git apply llm-opti/tools/patches/my_changes.patch
+
