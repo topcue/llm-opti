@@ -1,5 +1,6 @@
-test/*/*.o
 test/*/*.s
+test/*/*.o
+test/*/*.a
 test/*/*.elf
 
 tools/gcc
