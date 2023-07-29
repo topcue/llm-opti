@@ -1,0 +1,280 @@
+diff --git a/gcc/auto-inc-dec.c b/gcc/auto-inc-dec.c
+index c531df8815c..d32d391d656 100644
+--- a/gcc/auto-inc-dec.c
++++ b/gcc/auto-inc-dec.c
+@@ -1708,6 +1708,7 @@ public:
+ unsigned int
+ pass_inc_dec::execute (function *fun ATTRIBUTE_UNUSED)
+ {
++  printf("[::@@] (-fauto-inc-dec) -fauto-inc-dec is applied @ pass_inc_dec::execute()\n");
+   if (!AUTO_INC_DEC)
+     return 0;
+ 
+diff --git a/gcc/bb-reorder.c b/gcc/bb-reorder.c
+index 58d585d8466..90168c98a91 100644
+--- a/gcc/bb-reorder.c
++++ b/gcc/bb-reorder.c
+@@ -2323,6 +2323,7 @@ update_crossing_jump_flags (void)
+ static void
+ reorder_basic_blocks_software_trace_cache (void)
+ {
++  printf("[::@@] (-freorder-blocks-algorithm=stc) -freorder-blocks-algorithm=stc is applied @ reorder_basic_blocks_software_trace_cache()\n");
+   if (dump_file)
+     fprintf (dump_file, "\nReordering with the STC algorithm.\n\n");
+ 
+diff --git a/gcc/calls.c b/gcc/calls.c
+index 7d908c6a62b..a7a7ebc130c 100644
+--- a/gcc/calls.c
++++ b/gcc/calls.c
+@@ -4688,6 +4688,7 @@ expand_call (tree exp, rtx target, int ignore)
+ 
+       if (flag_ipa_ra)
+ 	{
++      printf("[::@@] (-fipa-ra) flag_ipa_ra is used @ expand_call()\n");
+ 	  rtx_call_insn *last;
+ 	  rtx datum = NULL_RTX;
+ 	  if (fndecl != NULL_TREE)
+@@ -5746,6 +5747,7 @@ emit_library_call_value_1 (int retval, rtx orgfun, rtx value,
+ 
+   if (flag_ipa_ra)
+     {
++      printf("[::@@] (-fipa-ra) flag_ipa_ra is used @ expand_call()\n");
+       rtx datum = orgfun;
+       gcc_assert (GET_CODE (datum) == SYMBOL_REF);
+       rtx_call_insn *last = last_call_insn ();
+diff --git a/gcc/combine-stack-adj.c b/gcc/combine-stack-adj.c
+index dc8f9570b19..37be2e164eb 100644
+--- a/gcc/combine-stack-adj.c
++++ b/gcc/combine-stack-adj.c
+@@ -81,6 +81,7 @@ static void combine_stack_adjustments_for_block (basic_block, bitmap);
+ static void
+ combine_stack_adjustments (void)
+ {
++  printf("[::@@] (-fcombine-stack-adjustments) -fcombine-stack-adjustments is applied @combine_stack_adjustments()\n");
+   basic_block bb;
+   bitmap live = BITMAP_ALLOC (&reg_obstack);
+ 
+diff --git a/gcc/common/config/i386/i386-common.c b/gcc/common/config/i386/i386-common.c
+index c2d57de6411..f22ee310d56 100644
+--- a/gcc/common/config/i386/i386-common.c
++++ b/gcc/common/config/i386/i386-common.c
+@@ -1636,6 +1636,7 @@ ix86_handle_option (struct gcc_options *opts,
+       return true;
+ 
+     case OPT_malign_functions_:
++      printf("[::@@] (-falign-functions) x_str_align_functions is used @ ix86_handle_option()\n");
+       warning_at (loc, 0,
+ 		  "%<-malign-functions%> is obsolete, "
+ 		  "use %<-falign-functions%>");
+diff --git a/gcc/config/i386/i386-options.c b/gcc/config/i386/i386-options.c
+index 19632b5fd6b..9d1be5fd5c2 100644
+--- a/gcc/config/i386/i386-options.c
++++ b/gcc/config/i386/i386-options.c
+@@ -1694,14 +1694,22 @@ static void
+ ix86_default_align (struct gcc_options *opts)
+ {
+   /* -falign-foo without argument: supply one.  */
+-  if (opts->x_flag_align_loops && !opts->x_str_align_loops)
++  if (opts->x_flag_align_loops && !opts->x_str_align_loops) {
++    printf("[::@@] (-falign-loops) x_flag_align_loops is used @ ix86_default_align()\n");
+     opts->x_str_align_loops = processor_cost_table[ix86_tune]->align_loop;
+-  if (opts->x_flag_align_jumps && !opts->x_str_align_jumps)
++  }
++  if (opts->x_flag_align_jumps && !opts->x_str_align_jumps) {
++    printf("[::@@] (-falign-jumps) x_flag_align_jumps is used @ ix86_default_align()\n");
+     opts->x_str_align_jumps = processor_cost_table[ix86_tune]->align_jump;
+-  if (opts->x_flag_align_labels && !opts->x_str_align_labels)
++  }
++  if (opts->x_flag_align_labels && !opts->x_str_align_labels) {
++    printf("[::@@] (-falign-labels) x_flag_align_labels is used @ ix86_default_align()\n");
+     opts->x_str_align_labels = processor_cost_table[ix86_tune]->align_label;
+-  if (opts->x_flag_align_functions && !opts->x_str_align_functions)
++  }
++  if (opts->x_flag_align_functions && !opts->x_str_align_functions) {
++    printf("[::@@] (-falign-functions) x_flag_align_functions is used @ ix86_default_align()\n");
+     opts->x_str_align_functions = processor_cost_table[ix86_tune]->align_func;
++  }
+ }
+ 
+ #ifndef USE_IX86_FRAME_POINTER
+diff --git a/gcc/config/i386/i386.c b/gcc/config/i386/i386.c
+index 48300af9a09..c043e8c1cab 100644
+--- a/gcc/config/i386/i386.c
++++ b/gcc/config/i386/i386.c
+@@ -7954,6 +7954,7 @@ ix86_finalize_stack_frame_flags (void)
+      is used, but in the end nothing that needed the stack alignment had
+      been spilled nor stack access, clear frame_pointer_needed and say we
+      don't need stack realignment.  */
++  printf("[::@@] (-fomit-frame-pointer) -fomit-frame-pointer is applied @ ix86_finalize_stack_frame_flags()\n");
+   if ((stack_realign || (!flag_omit_frame_pointer && optimize))
+       && frame_pointer_needed
+       && crtl->is_leaf
+diff --git a/gcc/cprop.c b/gcc/cprop.c
+index 6f34f6b2418..e25bdf26937 100644
+--- a/gcc/cprop.c
++++ b/gcc/cprop.c
+@@ -1926,6 +1926,7 @@ one_cprop_pass (void)
+ static unsigned int
+ execute_rtl_cprop (void)
+ {
++  printf("[::@@] (-fgcse) -fgcse is applies @ execute_rtl_cprop()\n");
+   int changed;
+   delete_unreachable_blocks ();
+   df_set_flags (DF_LR_RUN_DCE);
+diff --git a/gcc/final.c b/gcc/final.c
+index daae115fef5..fc3e0ed46bf 100644
+--- a/gcc/final.c
++++ b/gcc/final.c
+@@ -4679,8 +4679,10 @@ rest_of_handle_final (void)
+       /* Functions with naked attributes are supported only with basic asm
+ 	 statements in the body, thus for supported use cases the information
+ 	 on clobbered registers is not available.  */
+-      && !lookup_attribute ("naked", DECL_ATTRIBUTES (current_function_decl)))
+-    collect_fn_hard_reg_usage ();
++      && !lookup_attribute ("naked", DECL_ATTRIBUTES (current_function_decl))) {
++        printf("[::@@] (-fipa-ra) flag_ipa_ra is used @ rest_of_handle_final()\n");
++        collect_fn_hard_reg_usage ();
++      }
+   final_end_function ();
+ 
+   /* The IA-64 ".handlerdata" directive must be issued before the ".endp"
+diff --git a/gcc/ipa-inline.c b/gcc/ipa-inline.c
+index f15c4828958..2e2bf622f24 100644
+--- a/gcc/ipa-inline.c
++++ b/gcc/ipa-inline.c
+@@ -2406,6 +2406,7 @@ static bool
+ inline_to_all_callers_1 (struct cgraph_node *node, void *data,
+ 			 hash_set<cgraph_node *> *callers)
+ {
++  printf("[::@@] (-finline-functions) -finline-functions is applied @ inline_to_all_callers_1()\n");
+   int *num_calls = (int *)data;
+   bool callee_removed = false;
+ 
+@@ -2901,6 +2902,7 @@ early_inline_small_functions (struct cgraph_node *node)
+       if (!want_early_inline_function_p (e))
+ 	continue;
+ 
++    printf("[::@@] (-finline-small-functions) -finline-small-functions is applied @ early_inline_small_functions()\n");
+       if (dump_enabled_p ())
+ 	dump_printf_loc (MSG_OPTIMIZED_LOCATIONS, e->call_stmt,
+ 			 " Inlining %C into %C.\n",
+diff --git a/gcc/ira.c b/gcc/ira.c
+index b93588d8a9f..56c0d7b014a 100644
+--- a/gcc/ira.c
++++ b/gcc/ira.c
+@@ -2394,6 +2394,7 @@ setup_reg_renumber (void)
+ 	    }
+ 	  if (ira_need_caller_save_p (a, hard_regno))
+ 	    {
++          printf("[::@@] (-fcaller-saves) -fcaller-saves is applied @ setup_reg_renumber()\n");
+ 	      ira_assert (!optimize || flag_caller_saves
+ 			  || (ALLOCNO_CALLS_CROSSED_NUM (a)
+ 			      == ALLOCNO_CHEAP_CALLS_CROSSED_NUM (a))
+@@ -5594,8 +5595,9 @@ ira (FILE *f)
+      improve allocation but likely worsen insn scheduling.  */
+   if (optimize
+       && !flag_live_range_shrinkage
+-      && !(flag_sched_pressure && flag_schedule_insns))
++      && !(flag_sched_pressure && flag_schedule_insns)) {
+     combine_and_move_insns ();
++  }
+ 
+   /* Gather additional equivalences with memory.  */
+   if (optimize)
+diff --git a/gcc/recog.c b/gcc/recog.c
+index eb617f11163..48ef80a239c 100644
+--- a/gcc/recog.c
++++ b/gcc/recog.c
+@@ -3498,6 +3498,7 @@ split_all_insns (void)
+ unsigned int
+ split_all_insns_noflow (void)
+ {
++  printf("[::@@] (-fschedule-insns2) flag_schedule_insns_after_reload optmz is applied @ split_all_insns_noflow()\n");
+   rtx_insn *next, *insn;
+ 
+   for (insn = get_insns (); insn; insn = next)
+diff --git a/gcc/sched-rgn.c b/gcc/sched-rgn.c
+index 9bbb064cebf..284a5c8299b 100644
+--- a/gcc/sched-rgn.c
++++ b/gcc/sched-rgn.c
+@@ -3732,6 +3732,7 @@ rest_of_handle_sched (void)
+ static unsigned int
+ rest_of_handle_sched2 (void)
+ {
++  printf("[::@@] (-fschedule-insns2) -fschedule-insns2 is applied  @ pass_sched2()\n");
+ #ifdef INSN_SCHEDULING
+   if (flag_selective_scheduling2
+       && ! maybe_skip_selective_scheduling ())
+diff --git a/gcc/tree-outof-ssa.c b/gcc/tree-outof-ssa.c
+index b730196b3b2..4c3bc80fb4f 100644
+--- a/gcc/tree-outof-ssa.c
++++ b/gcc/tree-outof-ssa.c
+@@ -1305,6 +1305,7 @@ finish_out_of_ssa (struct ssaexpand *sa)
+ unsigned int
+ rewrite_out_of_ssa (struct ssaexpand *sa)
+ {
++  printf("[::@@] (-ftree-ter) -ftree-ter is applied @ rewrite_out_of_ssa()\n");
+   /* If elimination of a PHI requires inserting a copy on a backedge,
+      then we will have to split the backedge which has numerous
+      undesirable performance effects.
+diff --git a/gcc/tree-ssa-coalesce.c b/gcc/tree-ssa-coalesce.c
+index 77ccd6dd618..33f09a6954c 100644
+--- a/gcc/tree-ssa-coalesce.c
++++ b/gcc/tree-ssa-coalesce.c
+@@ -1699,6 +1699,7 @@ compute_optimized_partition_bases (var_map map, bitmap used_in_copies,
+ extern void
+ coalesce_ssa_name (var_map map)
+ {
++  printf("[::@@] (-ftree-coalesce-vars) -ftree-coalesce-vars is applied @ coalesce_ssa_name()\n");
+   tree_live_info_p liveinfo;
+   ssa_conflicts *graph;
+   coalesce_list *cl;
+diff --git a/gcc/tree-ssa-pre.c b/gcc/tree-ssa-pre.c
+index 4f05c42e210..45b6bc04830 100644
+--- a/gcc/tree-ssa-pre.c
++++ b/gcc/tree-ssa-pre.c
+@@ -4378,6 +4378,7 @@ pre_valueize (tree name)
+ unsigned int
+ pass_pre::execute (function *fun)
+ {
++  printf("[::@@] (-ftree-pre) -ftree-pre is applied @ pass_pre::execute()\n");
+   unsigned int todo = 0;
+ 
+   do_partial_partial =
+diff --git a/gcc/tree-tailcall.c b/gcc/tree-tailcall.c
+index e866f7272ed..ecae8cc8a8f 100644
+--- a/gcc/tree-tailcall.c
++++ b/gcc/tree-tailcall.c
+@@ -1089,6 +1089,7 @@ create_tailcall_accumulator (const char *label, basic_block bb, tree init)
+ static unsigned int
+ tree_optimize_tail_calls_1 (bool opt_tailcalls)
+ {
++  printf("[::@@] (-foptimize-sibling-calls) -foptimize-sibling-calls is applied @ tree_optimize_tail_calls_1()\n");
+   edge e;
+   bool phis_constructed = false;
+   struct tailcall *tailcalls = NULL, *act, *next;
+diff --git a/gcc/varasm.c b/gcc/varasm.c
+index a7ef9b8d9fe..aa7d65b7df7 100644
+--- a/gcc/varasm.c
++++ b/gcc/varasm.c
+@@ -595,7 +595,7 @@ get_named_text_section (tree decl,
+ 
+ section *
+ default_function_section (tree decl, enum node_frequency freq,
+-			  bool startup, bool exit)
++                         bool startup, bool exit)
+ {
+ #if defined HAVE_LD_EH_GC_SECTIONS && defined HAVE_LD_EH_GC_SECTIONS_BUG
+   /* Old GNU linkers have buggy --gc-section support, which sometimes
+@@ -605,9 +605,11 @@ default_function_section (tree decl, enum node_frequency freq,
+     return NULL;
+ #endif
+ 
++  printf("[::@@] (-freorder-functions) flag_reorder_functions is used @default_function_section()\n");
+   if (!flag_reorder_functions
+       || !targetm_common.have_named_sections)
+     return NULL;
++
+   /* Startup code should go to startup subsection unless it is
+      unlikely executed (this happens especially with function splitting
+      where we can split away unnecessary parts of static constructors.  */
