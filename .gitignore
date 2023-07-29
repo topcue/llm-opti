@@ -1,0 +1,8 @@
+test/*/*.o
+test/*/*.s
+test/*/*.elf
+
+tools/gcc
+tools/install
+
+.vscode/
