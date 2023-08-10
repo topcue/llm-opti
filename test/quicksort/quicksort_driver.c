@@ -2,9 +2,9 @@
 #include <string.h>
 #include <assert.h>
 
-void swap(int *a, int *b);
-int partition(int array[], int low, int high);
-void quickSort(int array[], int low, int high);
+void func1(int *a, int *b);
+int func2(int array[], int low, int high);
+void func3(int array[], int low, int high);
 
 void test1() {
     int data[] = {8, 7, 2, 1, 0, 9, 6};
@@ -12,11 +12,10 @@ void test1() {
     int n = sizeof(data) / sizeof(data[0]);
     
     // perform quicksort on data
-    quickSort(data, 0, n - 1);
+    func3(data, 0, n - 1);
     for (size_t i = 0; i < 7; i++) {
         assert(data[i] == answer[i]);
-    }    
-    // printf("[+] quicksort driver: passed test!\n");
+    }
 }
 
 void test2() {
@@ -27,9 +26,9 @@ void benchmark() {
     int data[13] = {8, 7, 2, 1, 0, 9, 6, 4, 4, 3, 5, 10, -1};
     int temp[13] = {0, };
 
-    for (size_t i = 0; i < 20000000; i++) {
-      memcpy(temp, data, sizeof(int) * 13);
-      quickSort(temp, 0, 7);
+    for (size_t i = 0; i < 100000000; i++) {
+        memcpy(temp, data, sizeof(int) * 13);
+        func3(temp, 0, 7);
     }
 }
 
@@ -47,6 +46,7 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < num_tests; i++) {
             tests[i]();
         }
+        printf("[+] quicksort driver: passed test!\n");
     } else if (strcmp(mode, "bench") == 0) {
         printf("[DEBUG] benchmark mode\n");
         benchmark();
