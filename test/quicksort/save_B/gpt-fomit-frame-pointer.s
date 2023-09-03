@@ -22,7 +22,6 @@ func1:
 	add	rsp, 32
 	ret
 	.cfi_endproc
-
 	.globl	func2
 	.type	func2, @function
 func2:
@@ -92,7 +91,6 @@ func2:
 	add	rsp, 40
 	ret
 	.cfi_endproc
-
 	.globl	func3
 	.type	func3, @function
 func3:
