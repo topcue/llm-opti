@@ -1,14 +1,3 @@
-- descriptions:
-```
-Omit the frame pointer in functions that don’t need one. This avoids the instructions to save, set up and restore the frame pointer; on many targets it also makes an extra register available.
-
-That is, if possible, rsp should be used instead of rbp.
-In addition, all index addressing modes using [rbp-*] must be calculated using [rsp+*].
-(Values corresponding to * must also be recalculated.)
-```
-
-- assembly code:
-```
 	.file	"test.c"
 	.intel_syntax noprefix
 	.text
@@ -22,17 +11,17 @@ func1:
 	.cfi_offset 6, -16
 	mov	rbp, rsp
 	.cfi_def_cfa_register 6
-	mov	QWORD PTR [rbp-24], rdi
-	mov	QWORD PTR [rbp-32], rsi
-	mov	rax, QWORD PTR [rbp-24]
+	mov	r8, rdi
+	mov	r9, rsi
+	mov	rax, r8
 	mov	eax, DWORD PTR [rax]
-	mov	DWORD PTR [rbp-4], eax
-	mov	rax, QWORD PTR [rbp-32]
+	mov	ecx, eax
+	mov	rax, r9
 	mov	edx, DWORD PTR [rax]
-	mov	rax, QWORD PTR [rbp-24]
+	mov	rax, r8
 	mov	DWORD PTR [rax], edx
-	mov	rax, QWORD PTR [rbp-32]
-	mov	edx, DWORD PTR [rbp-4]
+	mov	rax, r9
+	mov	edx, ecx
 	mov	DWORD PTR [rax], edx
 	nop
 	pop	rbp
@@ -167,4 +156,3 @@ func3:
 	.size	func3, .-func3
 	.ident	"GCC: (GNU) 11.3.0"
 	.section	.note.GNU-stack,"",@progbits
-```

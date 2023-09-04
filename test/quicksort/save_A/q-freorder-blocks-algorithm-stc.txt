@@ -1,0 +1,20 @@
+Apply 'descriptions' to 'assembly code' to generate reconstructed assembly code. And return all reconstructed assembly code without comments or omissions.
+
+- descriptions:
+```
+Use the STC (Software Trace Cache) algorithm for basic block reordering.
+
+The STC algorithm, which tries to put all often executed code together, minimizing the number of branches executed by making extra copies of code.
+```
+
+- assembly code:
+```
+// assembly code here
+```
+
+Return the complete reconstructed assembly code without any comments or omissions, and ensure all given descriptions are applied accurately.
+
+Reconstruct the assembly code taking care not to generate errors such as:
+- Error: incorrect register `rdi' used with `l' suffix
+- Error: unsupported instruction `mov'
+- Error: Error: too many memory references for `cmp'

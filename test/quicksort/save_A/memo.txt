@@ -1,0 +1,2 @@
+input: O0
+acc: no
