@@ -1,3 +1,6 @@
+test/fibonacci
+test/heapsort
+
 test/*/*.s
 test/*/*.o
 test/*/*.a
