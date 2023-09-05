@@ -1,0 +1,8 @@
+# Description
+Use the STC (Software Trace Cache) algorithm for basic block reordering.
+
+The STC algorithm, which tries to put all often executed code together, minimizing the number of branches executed by making extra copies of code.
+
+# Assembly code
+```
+```

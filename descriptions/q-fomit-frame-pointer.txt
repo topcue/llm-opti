@@ -1,0 +1,11 @@
+# Description
+Omit the frame pointer in functions that don’t need one. This avoids the instructions to save, set up and restore the frame pointer; on many targets it also makes an extra register available.
+
+That is, if possible, rsp should be used instead of rbp.
+In addition, all index addressing modes using [rbp-*] must be calculated using [rsp+*].
+(Values corresponding to * must also be recalculated.)
+
+
+# Assembly code
+```
+```

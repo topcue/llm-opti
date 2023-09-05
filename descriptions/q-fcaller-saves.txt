@@ -1,0 +1,7 @@
+# Description
+Enable allocation of values to registers that are clobbered by function calls, by emitting extra instructions to save and restore the registers around such calls.
+Such allocation is done only when it seems to result in better code.
+
+# Assembly code
+```
+```

@@ -1,0 +1,10 @@
+# Description
+Attempt to reorder instructions to eliminate execution stalls due to required data being unavailable.
+Apply optimizations for memory load instructions by allowing the result of a load instruction to execute another instruction until it is needed.
+
+Apply instruction scheduling optimizations after register allocation has been done.
+This is especially useful on machines with a relatively small number of registers and where memory load instructions take more than one cycle.
+
+# Assembly code
+```
+```

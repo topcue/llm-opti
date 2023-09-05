@@ -1,0 +1,6 @@
+# Description
+Apply align-jumps, align-loops and align-functions optimizations.
+
+# Assembly code
+```
+```
