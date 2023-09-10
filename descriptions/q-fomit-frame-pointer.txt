@@ -5,7 +5,6 @@ That is, if possible, rsp should be used instead of rbp.
 In addition, all index addressing modes using [rbp-*] must be calculated using [rsp+*].
 (Values corresponding to * must also be recalculated.)
 
-
 # Assembly code
 ```
 ```

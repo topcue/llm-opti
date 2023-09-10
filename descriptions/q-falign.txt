@@ -1,5 +1,12 @@
 # Description
-Apply align-jumps, align-loops and align-functions optimizations.
+# Description
+Apply align-functions and align-jumps optimizations. The target is x64 architecture.
+
+- Align-functions optimization
+Align the start of functions to the next power-of-two greater than n, skipping up to n bytes.
+
+- Align-jumps optimization
+Align all branch targets to a power-of-two boundary, skipping up to n bytes.
 
 # Assembly code
 ```
