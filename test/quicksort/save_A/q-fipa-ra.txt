@@ -1,0 +1,14 @@
+# Description
+Use caller save registers for allocation if those registers are not used by any called function. In that case it is not necessary to save and restore them around calls. This is only possible if called functions are part of same compilation unit as current function and they are compiled before it.
+
+For example, consider the following case.
+`mov reg3, reg4`, `mov reg1, reg2`, `call func1`, `mov reg5, reg6`, `mov reg1, reg2`, `call func1`
+If the value of reg1 has not changed after the first `mov reg1, reg2`, the following `mov reg1, reg2` can be omitted.
+Look at the `call func1` between the two `mov reg1, reg2` and consider whether the value of `reg2` or `reg1` does not need to be changed.
+Find such an instruction, if it exists, and return the full assembly code, omitting the second `mov reg1, reg2`.
+
+(There may not be any case like above. Reconstruct if there is a case similar to this.)
+
+# Assembly code
+```
+```

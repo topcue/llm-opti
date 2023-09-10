@@ -1,0 +1,8 @@
+# Description
+Apply Partial Redundancy Elimination (PRE) on trees optimization at assembly level.
+Consider all branches of the functions. In this case, certain basic blocks contain instructions that do not always need to be executed.
+In this case, create a new basic block using a new label and branch, and change the structure of the basic blocks so that a specific instruction is executed only when it is necessary or not when it is unnecessary.
+
+# Assembly code
+```
+```
