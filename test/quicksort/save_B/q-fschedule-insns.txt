@@ -53,19 +53,11 @@ func2:
     add rax, rcx
     mov rsi, rdx
     mov rdi, rax
-    push rdi
-    push rsi
-    mov rax, rdi
-    mov eax, DWORD PTR [rax]
+    mov eax, DWORD PTR [rdi]
     mov r10d, eax
-    mov rax, rsi
-    mov edx, DWORD PTR [rax]
-    mov rax, rdi
-    mov DWORD PTR [rax], edx
-    mov rax, rsi
-    mov DWORD PTR [rax], r10d
-    pop rsi
-    pop rdi
+    mov eax, DWORD PTR [rsi]
+    mov DWORD PTR [rdi], eax
+    mov DWORD PTR [rsi], r10d
 .L4:
     add DWORD PTR [rsp+36], 1
 .L3:
@@ -85,19 +77,11 @@ func2:
     add rax, rcx
     mov rsi, rdx
     mov rdi, rax
-    push rdi
-    push rsi
-    mov rax, rdi
-    mov eax, DWORD PTR [rax]
+    mov eax, DWORD PTR [rdi]
     mov r10d, eax
-    mov rax, rsi
-    mov edx, DWORD PTR [rax]
-    mov rax, rdi
-    mov DWORD PTR [rax], edx
-    mov rax, rsi
-    mov DWORD PTR [rax], r10d
-    pop rsi
-    pop rdi
+    mov eax, DWORD PTR [rsi]
+    mov DWORD PTR [rdi], eax
+    mov DWORD PTR [rsi], r10d
     mov eax, DWORD PTR [rsp+32]
     inc eax
     add rsp, 40

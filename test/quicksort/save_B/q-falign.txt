@@ -58,8 +58,7 @@ func2:
     mov eax, DWORD PTR [rdi]
     mov r10d, eax
     mov eax, DWORD PTR [rsi]
-    mov edx, eax
-    mov DWORD PTR [rdi], edx
+    mov DWORD PTR [rdi], eax
     mov DWORD PTR [rsi], r10d
 .L4:
     add DWORD PTR [rsp+36], 1
@@ -83,8 +82,7 @@ func2:
     mov eax, DWORD PTR [rdi]
     mov r10d, eax
     mov eax, DWORD PTR [rsi]
-    mov edx, eax
-    mov DWORD PTR [rdi], edx
+    mov DWORD PTR [rdi], eax
     mov DWORD PTR [rsi], r10d
     mov eax, DWORD PTR [rsp+32]
     inc eax

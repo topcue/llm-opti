@@ -23,7 +23,7 @@ func2:
     mov eax, DWORD PTR [rsp+8]
     mov DWORD PTR [rsp+36], eax
     jmp .L3
-.balign 16
+    .balign 16
 .L5:
     mov eax, DWORD PTR [rsp+36]
     cdqe
@@ -49,13 +49,12 @@ func2:
     mov eax, DWORD PTR [rdi]
     mov r10d, eax
     mov eax, DWORD PTR [rsi]
-    mov edx, eax
-    mov DWORD PTR [rdi], edx
+    mov DWORD PTR [rdi], eax
     mov DWORD PTR [rsi], r10d
-.balign 16
+    .balign 16
 .L4:
     add DWORD PTR [rsp+36], 1
-.balign 16
+    .balign 16
 .L3:
     mov eax, DWORD PTR [rsp+36]
     cmp eax, DWORD PTR [rsp+12]
@@ -76,8 +75,7 @@ func2:
     mov eax, DWORD PTR [rdi]
     mov r10d, eax
     mov eax, DWORD PTR [rsi]
-    mov edx, eax
-    mov DWORD PTR [rdi], edx
+    mov DWORD PTR [rdi], eax
     mov DWORD PTR [rsi], r10d
     mov eax, DWORD PTR [rsp+32]
     inc eax
@@ -117,7 +115,7 @@ func3:
     mov esi, ecx
     mov rdi, rax
     call  func3
-.balign 16
+    .balign 16
 .L9:
     nop
     add rsp, 40
@@ -127,4 +125,3 @@ func3:
     .size func3, .-func3
     .ident  "GCC: (GNU) 11.3.0"
     .section  .note.GNU-stack,"",@progbits
-
