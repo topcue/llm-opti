@@ -1,0 +1,8 @@
+# Description
+Apply peephole optimization
+
+Hint1: Consider the case where you can add or sub without a memory load.
+
+# Assembly code
+```
+```
