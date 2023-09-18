@@ -1,5 +1,4 @@
 # Description
-# Description
 Apply align-functions and align-jumps optimizations. The target is x64 architecture.
 
 - Align-functions optimization
