@@ -9,7 +9,7 @@ Align all branch targets to a power-of-two boundary, skipping up to n bytes.
 
 # Assembly code
 ```
-    .file	"quicksort.c"
+    .file	"test.c"
 	.intel_syntax noprefix
 	.text
 	.globl	func1

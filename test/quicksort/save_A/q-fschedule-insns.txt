@@ -7,7 +7,7 @@ This is especially useful on machines with a relatively small number of register
 
 # Assembly code
 ```
-	.file	"quicksort.c"
+	.file	"test.c"
 	.intel_syntax noprefix
 	.text
 	.globl	func1

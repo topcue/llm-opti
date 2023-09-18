@@ -4,7 +4,7 @@ Such allocation is done only when it seems to result in better code.
 
 # Assembly code
 ```
-	.file	"quicksort.c"
+	.file	"test.c"
 	.intel_syntax noprefix
 	.text
 	.globl	func1

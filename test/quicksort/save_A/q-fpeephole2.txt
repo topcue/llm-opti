@@ -5,7 +5,7 @@ Hint1: Consider the case where you can add or sub without a memory load.
 
 # Assembly code
 ```
-    .file	"quicksort.c"
+    .file	"test.c"
 	.intel_syntax noprefix
 	.text
 	.globl	func1

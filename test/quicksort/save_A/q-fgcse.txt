@@ -6,7 +6,7 @@ For example, if a basic block contains instructions that do not always need to b
 
 # Assembly code
 ```
-	.file	"quicksort.c"
+	.file	"test.c"
 	.intel_syntax noprefix
 	.text
 	.globl	func1

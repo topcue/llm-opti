@@ -5,7 +5,7 @@ The STC algorithm, which tries to put all often executed code together, minimizi
 
 # Assembly code
 ```
-    .file	"quicksort.c"
+    .file	"test.c"
 	.intel_syntax noprefix
 	.text
 	.globl	func1

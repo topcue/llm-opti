@@ -5,7 +5,7 @@ In this case, create a new basic block using a new label and branch, and change 
 
 # Assembly code
 ```
-	.file	"quicksort.c"
+	.file	"test.c"
 	.intel_syntax noprefix
 	.text
 	.globl	func1

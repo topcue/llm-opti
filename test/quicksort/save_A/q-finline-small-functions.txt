@@ -3,7 +3,7 @@ Apply function inline optimization
 
 # Assembly code
 ```
-	.file	"quicksort.c"
+	.file	"test.c"
 	.intel_syntax noprefix
 	.text
 	.globl	func1

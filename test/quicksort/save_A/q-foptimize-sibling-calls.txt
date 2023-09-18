@@ -3,7 +3,7 @@ Optimize sibling and tail recursive calls.
 
 # Assembly code
 ```
-	.file	"quicksort.c"
+	.file	"test.c"
 	.intel_syntax noprefix
 	.text
 	.globl	func1
