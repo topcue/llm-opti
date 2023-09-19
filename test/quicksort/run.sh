@@ -11,3 +11,8 @@ ${GCC_PATH} quicksort_driver.c -O0 -o quicksort_driver_tmp.elf -L. -ltmp
 
 time ./quicksort_driver_tmp.elf test
 time ./quicksort_driver_tmp.elf bench
+
+rm tmp.o libtmp.a quicksort_driver_tmp.elf
+
+# EOF
+
