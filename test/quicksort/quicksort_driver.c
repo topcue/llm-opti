@@ -26,7 +26,7 @@ void benchmark() {
     int data[13] = {8, 7, 2, 1, 0, 9, 6, 4, 4, 3, 5, 10, -1};
     int temp[13] = {0, };
 
-    for (size_t i = 0; i < 100000000; i++) {
+    for (size_t i = 0; i < 200000000; i++) {
         memcpy(temp, data, sizeof(int) * 13);
         func3(temp, 0, 7);
     }
