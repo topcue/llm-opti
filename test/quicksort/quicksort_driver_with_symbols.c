@@ -4,7 +4,7 @@
 
 void swap(int *a, int *b);
 int partition(int array[], int low, int high);
-void quickSort(int array[], int low, int high);
+void quicksort(int array[], int low, int high);
 
 void test1() {
     int data[] = {8, 7, 2, 1, 0, 9, 6};
@@ -12,7 +12,7 @@ void test1() {
     int n = sizeof(data) / sizeof(data[0]);
 
     // perform quicksort on data
-    quickSort(data, 0, n - 1);
+    quicksort(data, 0, n - 1);
     for (size_t i = 0; i < 7; i++) {
         assert(data[i] == answer[i]);
     }
@@ -28,7 +28,7 @@ void benchmark() {
 
     for (size_t i = 0; i < 200000000; i++) {
         memcpy(temp, data, sizeof(int) * 13);
-        quickSort(temp, 0, 7);
+        quicksort(temp, 0, 7);
     }
 }
 
