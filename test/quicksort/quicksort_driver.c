@@ -10,7 +10,7 @@ void test1() {
     int data[] = {8, 7, 2, 1, 0, 9, 6};
     int answer[7] = {0, 1, 2, 6, 7, 8, 9};
     int n = sizeof(data) / sizeof(data[0]);
-    
+
     // perform quicksort on data
     func3(data, 0, n - 1);
     for (size_t i = 0; i < 7; i++) {
@@ -19,7 +19,7 @@ void test1() {
 }
 
 void test2() {
-    return;  
+    return;
 }
 
 void benchmark() {
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
         printf("Usage: %s <mode>\n", argv[0]);
         return 1;
     }
-    
+
     return 0;
 }
 
