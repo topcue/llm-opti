@@ -15,4 +15,3 @@ time ./quicksort_driver_tmp.elf bench
 rm tmp.o libtmp.a quicksort_driver_tmp.elf
 
 # EOF
-
