@@ -1,0 +1,1 @@
+void func1(char* string1, char* string2);
