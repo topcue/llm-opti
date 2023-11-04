@@ -1,0 +1,12 @@
+# Description
+
+After register allocation and post-register allocation instruction splitting, identify arithmetic instructions that compute processor flags similar to a comparison operation based on that arithmetic. If possible, eliminate the explicit comparison operation.
+
+Apply this optimization only to certain targets where the comparison operation cannot be explicitly stated before register allocation is complete.
+
+For example, `cmp EAX, 0x24; jz [Address1]; cmp EAX, 0x24; jg [Address2]` can be replaced with `cmp EAX, 0x24; jz [Address1]; jg [Address2]`
+
+
+# Assembly code
+```
+```

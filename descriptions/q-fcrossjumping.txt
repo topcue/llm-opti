@@ -1,0 +1,9 @@
+# Description
+
+Perform cross-jumping transformation. This transformation unifies equivalent code and saves code size.
+
+Detect identical code sequences that can be shared and modify the program flow to behave identically to the only unique instance of this sequence.
+
+# Assembly code
+```
+```

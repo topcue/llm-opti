@@ -1,0 +1,9 @@
+# Description
+
+Emit function prologues only before parts of the function that need it, rather than at the top of the function.
+
+Optimize instructions such as `push RBP; mov RBP RSP` to execute when the stack pointer needs to be adjusted.
+
+# Assembly code
+```
+```
