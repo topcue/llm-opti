@@ -13,8 +13,8 @@
 #define NOT_FOUND -1
 #define FIND_MIN(a, b) ((a) > (b)) ? (b) : (a)
 
-static int binary_search_integers(const int *const, const int);
-static int find_largest_element_smaller_than_n(const int *const, const int);
+static int func2(const int *const, const int);
+static int func3(const int *const, const int);
 
 int main(void) {
     char string_data[STRING_MAX_LENGTH];
