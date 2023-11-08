@@ -63,10 +63,15 @@ typedef struct Point2D {
 static void convert_to_lowercase(char *const);
 
 int main(void) {
+    uint64_t start, end;
     char string1[MAX_STRING_LEN], string2[MAX_STRING_LEN];
     if(2 == scanf("%s%s", string1, string2)) {
-        for (int i = 0; i < 5000000; i++)
+        start = rdtsc();
+        for (int i = 0; i < NUM_ITERATION; i++) {
             func1(string1, string2);
+        }
+        end = rdtsc();
+        printf("[+] %f cycles\n", (end - start)/(float)NUM_ITERATION);
     } else {
         SCANF_READ_ERROR(2);
     }

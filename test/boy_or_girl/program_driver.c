@@ -62,12 +62,18 @@ typedef struct Point2D {
 #define NUMBER_OF_ALPHABETS 26
 
 int main(void) {
+    uint64_t start, end;
     char user_name[MAX_STRING_LENGTH];
     if(1 != scanf("%s", user_name)) {
         SCANF_READ_ERROR(1);
     }
-    for (int i = 0; i < 5000000; i++){
+    
+    start = rdtsc();
+    for (int i = 0; i < NUM_ITERATION; i++) {
         func1(user_name);
     }
+    end = rdtsc();
+    printf("[+] %f cycles\n", (end - start)/(float)NUM_ITERATION);
+
     return EXIT_SUCCESS;
 }

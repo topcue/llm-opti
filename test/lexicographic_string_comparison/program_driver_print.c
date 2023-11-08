@@ -65,8 +65,7 @@ static void convert_to_lowercase(char *const);
 int main(void) {
     char string1[MAX_STRING_LEN], string2[MAX_STRING_LEN];
     if(2 == scanf("%s%s", string1, string2)) {
-        for (int i = 0; i < 5000000; i++)
-            func1(string1, string2);
+        func1(string1, string2);
     } else {
         SCANF_READ_ERROR(2);
     }

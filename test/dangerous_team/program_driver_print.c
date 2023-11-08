@@ -64,9 +64,7 @@ int main(void) {
     if(1 != scanf("%s", binary_string)) {
         SCANF_READ_ERROR(1);
     }
-    for (int i = 0;i < 5000000; i++) {
-        func1(binary_string);
-    }
+    func1(binary_string);
     printf("%s\n", (func1(binary_string) ? "YES" : "NO"));
     return EXIT_SUCCESS;
 }

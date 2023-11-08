@@ -62,9 +62,7 @@ int main(void) {
     if(1 != scanf("%d", &year)) {
         SCANF_READ_ERROR(1);
     }
-    for (int i = 0; i < 1000000; i++)
-        func2(year);
-
+    func2(year);
     printf("%d\n",func2(year));
     return EXIT_SUCCESS;
 }

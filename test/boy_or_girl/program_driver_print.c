@@ -66,9 +66,7 @@ int main(void) {
     if(1 != scanf("%s", user_name)) {
         SCANF_READ_ERROR(1);
     }
-    for (int i = 0; i < 5000000; i++){
-        func1(user_name);
-    }
+    func1(user_name);
     printf("%s\n", (func1(user_name) % 2 ? "IGNORE HIM!" : "CHAT WITH HER!"));
     return EXIT_SUCCESS;
 }

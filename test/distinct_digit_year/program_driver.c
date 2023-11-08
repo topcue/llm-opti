@@ -58,12 +58,18 @@ typedef struct Point2D {
 
 /*END OF CODE-TEMPLATE*/
 int main(void) {
+    uint64_t start, end;
     int year;
     if(1 != scanf("%d", &year)) {
         SCANF_READ_ERROR(1);
     }
-    for (int i = 0; i < 1000000; i++)
-        func2(year);
 
+    start = rdtsc();
+    for (int i = 0; i < NUM_ITERATION; i++) {
+        func2(year);
+    }
+    end = rdtsc();
+    printf("[+] %f cycles\n", (end - start)/(float)NUM_ITERATION);
+    
     return EXIT_SUCCESS;
 }

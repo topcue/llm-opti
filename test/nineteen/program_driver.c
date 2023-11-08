@@ -17,9 +17,16 @@ static int binary_search_integers(const int *const, const int);
 static int find_largest_element_smaller_than_n(const int *const, const int);
 
 int main(void) {
+    uint64_t start, end;
     char string_data[STRING_MAX_LENGTH];
     scanf("%s", string_data);
-    for (int i = 0; i < 5000000; i++)
+
+    start = rdtsc();
+    for (int i = 0; i < NUM_ITERATION; i++) {
         func1(string_data);
+    }
+    end = rdtsc();
+    printf("[+] %f cycles\n", (end - start)/(float)NUM_ITERATION);
+    
     return EXIT_SUCCESS;
 }

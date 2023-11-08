@@ -19,8 +19,7 @@ static int find_largest_element_smaller_than_n(const int *const, const int);
 int main(void) {
     char string_data[STRING_MAX_LENGTH];
     scanf("%s", string_data);
-    for (int i = 0; i < 5000000; i++)
-        func1(string_data);
-    printf("%d\n", fucn1(string_data));
+    func1(string_data);
+    printf("%d\n", func1(string_data));
     return EXIT_SUCCESS;
 }
