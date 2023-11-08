@@ -14,9 +14,9 @@
 static int binary_search_integers(const int *const, const int);
 static int find_largest_element_smaller_than_n(const int *const, const int);
 
-int func1(char* string_data) {
-    // char string_data[STRING_MAX_LENGTH];
-    // scanf("%s", string_data);
+int main(void) {
+    char string_data[STRING_MAX_LENGTH];
+    scanf("%s", string_data);
     int e_count, i_count, n_count, t_count; // stores the number of times each e,i,n,t alphabet appear in the input string.
     e_count = i_count = n_count = t_count = 0;
     for(unsigned int i = 0; '\0' != string_data[i]; ++i) {
