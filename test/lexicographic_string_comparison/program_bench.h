@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-#define NUM_ITERATION 5000000
+#define NUM_ITERATION 10000000
 
 uint64_t rdtsc() {
     unsigned int low, high;

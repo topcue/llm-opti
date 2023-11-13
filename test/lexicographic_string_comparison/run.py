@@ -6,20 +6,20 @@ AR_PATH = f"{HOME_PATH}/llm-opti/tools/install/bin/gcc-ar"
 
 
 def compile():
-    # tmp1 = f"{GCC_PATH} -S program_bench.c -masm=intel -o tmp.s -O0 1>/dev/null"
+    cmd_compile = f"{GCC_PATH} -S program_bench.c -masm=intel -o tmp.s -O0 1>/dev/null"
 
-    tmp2 = f"{GCC_PATH} -c tmp.s -o tmp.o 1>/dev/null"
-    tmp3 = f"{AR_PATH} rcs libtmp.a tmp.o 1>/dev/null"
-    tmp4 = f"{GCC_PATH} program_driver.c -O0 -o program_driver.elf -L. -ltmp 1>/dev/null"
-
+    cmd_assemble = f"{GCC_PATH} -c tmp.s -o tmp.o 1>/dev/null"
+    cmd_archive = f"{AR_PATH} rcs libtmp.a tmp.o 1>/dev/null"
+    # for benchmark
+    cmd_link_driver = f"{GCC_PATH} program_driver.c -O0 -o program_driver.elf -L. -ltmp 1>/dev/null"
     # for test
-    tmp5 = f"{GCC_PATH} program_driver_print.c -O0 -o program_driver_print.elf -L. -ltmp 1>/dev/null"
+    cmd_link_tester = f"{GCC_PATH} program_driver_print.c -O0 -o program_driver_print.elf -L. -ltmp 1>/dev/null"
 
-    # os.system(tmp1)
-    os.system(tmp2)
-    os.system(tmp3)
-    os.system(tmp4)
-    os.system(tmp5)
+    # os.system(cmd_compile) # compile C code
+    os.system(cmd_assemble)
+    os.system(cmd_archive)
+    os.system(cmd_link_driver)
+    os.system(cmd_link_tester)
 
 
 def test():
@@ -36,32 +36,28 @@ def test():
 
 
 def benchmark():
-    arr = []
+    cycles_results = []
     for _ in range(10):
-        # cmd1 = "start=\"$(date +'%s.%N')\""
-        # cmd2 = "./program_driver.elf < test-cases/test-case-1.in"
-        # cmd3 = "echo \"$(date +\"%s.%N - ${start}\" | bc)\" >&2"
-        
-        # t = os.popen(f"{cmd1};{cmd2};{cmd3}").read().strip()
+        output = os.popen(f"sudo nice -n -19 taskset 1 ./program_driver.elf < test-cases/test-case-1.in").read().strip()
+        cycles = output.replace("[+] ", "").replace(" cycles", "")
 
-        # t = os.popen(f"sudo nice -n -19 taskset 1 ./program_driver.elf < test-cases/test-case-1.in").read().strip()
-        t = os.popen(f"taskset 1 ./program_driver.elf < test-cases/test-case-1.in").read().strip()
-        t = t.replace("[+] ", "")
-        t = t.replace(" cycles", "")
+        print(cycles)
+        cycles_results.append(float(cycles))
+    cycles_results = cycles_results[1:-1]
+    avg_cycles = round(sum(cycles_results) / len(cycles_results), 2)
+    print(f"[+] avg_cycles: {avg_cycles}")
 
-        print(t)
-        arr.append(float(t))
 
-    print(sorted(arr))
-    avg = round(sum(arr) / len(arr), 4)
-    print(avg)
-    # print(max(arr) - min(arr))
+def cleanup():
+    cmd_cleanup = f"rm tmp.o libtmp.a program_driver.elf program_driver_print.elf"
+    os.system(cmd_cleanup)
 
 
 def main():
     compile()
     test()
     benchmark()
+    cleanup()
 
 
 if __name__ == "__main__":
